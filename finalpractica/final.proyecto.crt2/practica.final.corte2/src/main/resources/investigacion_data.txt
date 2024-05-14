@@ -1,0 +1,56 @@
+Investigación Pool:
+Investigue para qué sirven estos métodos:
+pool.setInitialSize(3);
+pool.setMinIdle(3);
+pool.setMaxIdle(8);
+Los métodos setInitialSize(int initialSize), setMinIdle(int minIdle), setMaxIdle(int maxIdle),
+son parte de la configuración de un pool de conexiones en Java,
+específicamente cuando se trabaja con tecnologías de bases de datos.
+Estos métodos pertenecen a la clase org.apache.commons.pool2.impl.GenericObjectPool,
+que es una implementación de pool de objetos genéricos en la biblioteca Apache Commons Pool.
+
+setInitialSize(int initialSize): Este método establece el tamaño inicial del pool de conexiones.
+Es decir, cuando se crea el pool, se iniciarán inicialSize conexiones y se agregarán al pool.
+
+setMinIdle(int minIdle): Este método establece el número mínimo de conexiones inactivas que el pool debe mantener.
+Cuando las conexiones en el pool superan el límite definido por este método y están inactivas (no están siendo utilizadas),
+el pool puede cerrar algunas de ellas para mantener el número mínimo definido por minIdle.
+
+setMaxIdle(int maxIdle): Este método establece el número máximo de conexiones inactivas que el pool puede mantener.
+Si el número de conexiones inactivas en el pool supera el límite definido por este método,
+las conexiones adicionales se cerrarán para mantener el número máximo definido por maxIdle.
+
+Investigación Inyecciones:
+Investigue, describa y aplique los contextos:
+● @Dependent
+● @RequestScoped
+● @SessionScoped
+● @ConversationScoped
+● @ApplicationScoped
+
+@Dependent:
+Este es el contexto predeterminado para las clases de beans en CDI (Contexts and Dependency Injection).
+Los objetos @Dependent viven tanto tiempo como el objeto que los inyecta. En otras palabras,
+cada vez que un componente requiere un objeto @Dependent, el contenedor crea uno nuevo.
+Este contexto es útil cuando un objeto debe ser creado y destruido cada vez que se inyecta en otro componente.
+
+@RequestScoped:
+Los objetos con esta anotación tienen una duración de vida atada a una única solicitud HTTP.
+Esto significa que un objeto @RequestScoped se crea al inicio de una solicitud HTTP y se destruye al finalizar la misma.
+Es útil para datos que deben estar disponibles solo durante la duración de una solicitud HTTP.
+
+@SessionScoped:
+Los objetos @SessionScoped viven a lo largo de la sesión del usuario.
+Se crean cuando el usuario inicia la sesión y se destruyen cuando la sesión termina.
+Es útil para mantener datos específicos del usuario durante su sesión en una aplicación web.
+
+@ConversationScoped:
+Este contexto es parte del estándar de CDI y se utiliza para objetos que deben sobrevivir durante una "conversación" de usuario,
+que puede abarcar múltiples solicitudes HTTP. Una conversación puede comenzar y terminar explícitamente o
+puede estar definida por el desarrollador. Esto es útil para manejar flujos de trabajo complejos que implican múltiples
+interacciones del usuario.
+
+@ApplicationScoped:
+Los objetos @ApplicationScoped tienen una duración de vida que coincide con la de la aplicación.
+Se crean cuando se inicia la aplicación y se destruyen cuando se detiene la aplicación.
+ Son útiles para datos globales y recursos compartidos entre todas las sesiones y solicitudes en la aplicación.
